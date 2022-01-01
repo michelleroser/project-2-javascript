@@ -63,14 +63,16 @@ var cardsWon = []
 
 //create board
 
-function createBoard() {
+
+function createBoard()
+    {
   for (let i = 0; i < cardArray.length; i++) {
     var card = document.createElement('img')
     card.setAttribute('src', 'assets/images/tile.png')
     card.setAttribute('data-id', i)
     card.addEventListener('click', flipcard)
     grid.appendChild(card)
-  }
+    }
 }
 
 //check matches
@@ -80,6 +82,7 @@ function checkForMatch() {
   const optionOneId = cardsChosenId[0]
   const optionTwoId = cardsChosenId[1]
   if (cardsChosen[0] === cardsChosen[1]){
+    document.getElementById('winAudio').play()
     alert('You found a match')
     cards[optionOneId].setAttribute('src', 'assets/images/blank.png')
     cards[optionTwoId].setAttribute('src', 'assets/images/blank.png')
@@ -88,6 +91,7 @@ function checkForMatch() {
   else {
     cards[optionOneId].setAttribute('src', 'assets/images/tile.png')
     cards[optionTwoId].setAttribute('src', 'assets/images/tile.png')
+    document.getElementById('failAudio').play()
     alert('Sorry, try again')
   }
 
@@ -95,7 +99,9 @@ function checkForMatch() {
   cardsChosenId = []
   resultDisplay.textContent = cardsWon.length
   if (cardsWon.length === cardArray.length/2) {
+    document.getElementById('completeAudio').play()
     resultDisplay.textContent = 'Congratulations! You found them all!'
+    setTimeout("location.reload(true);", 1000);
   }
 }
 
@@ -107,11 +113,33 @@ function flipcard() {
   cardsChosenId.push(cardId)
   this.setAttribute('src', cardArray[cardId].img)
   if (cardsChosen.length === 2) {
-    setTimeout(checkForMatch, 500)
+    setTimeout(checkForMatch, 300)
   }
 }
 
+
 createBoard()
+
+
+// countdown timer
+
+
+const startingMinutes = 1;
+let time = startingMinutes * 60;
+const timerEl = document.getElementById('timer');
+
+setInterval(updateTimer, 1000);
+
+function updateTimer() {
+  const minutes = Math.floor(time / 60);
+  let seconds = time % 60;
+
+  seconds = seconds < 10 ? '0' + seconds : seconds;
+
+  timerEl.innerHTML = minutes+":"+seconds;
+  time--;
+  time = time < 0 ? 0 : time;
+}
 
 
 })

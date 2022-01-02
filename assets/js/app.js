@@ -101,7 +101,7 @@ function checkForMatch() {
   if (cardsWon.length === cardArray.length/2) {
     document.getElementById('completeAudio').play()
     resultDisplay.textContent = 'Congratulations! You found them all!'
-    setTimeout("location.reload(true);", 1000);
+    setTimeout("location.reload(true);", 6000);
   }
 }
 
@@ -120,26 +120,45 @@ function flipcard() {
 
 createBoard()
 
+// timer button click handling
 
-// countdown timer
+var timesClicked = 0;
+
+$("#btn").click(function() {
+      timesClicked++;
+
+      if (timesClicked%2==0) {
+          clearInterval(interval);
+          $("#btn").html("Start Timer");
+      } else {
+          updateTimer();
+          $("#btn").html("Stop Timer");
+      }
+  })
+
+
+// timer button
 
 
 const startingMinutes = 1;
-let time = startingMinutes * 60;
-const timerEl = document.getElementById('timer');
-
-setInterval(updateTimer, 1000);
+var time = startingMinutes * 60;
+const timerEl = document.getElementById('timer')
+var interval = []
 
 function updateTimer() {
+  interval = setInterval(function (){
+
   const minutes = Math.floor(time / 60);
-  let seconds = time % 60;
+  var seconds = time % 60;
 
   seconds = seconds < 10 ? '0' + seconds : seconds;
 
   timerEl.innerHTML = minutes+":"+seconds;
   time--;
   time = time < 0 ? 0 : time;
+  }, 1000);
 }
+
 
 
 })

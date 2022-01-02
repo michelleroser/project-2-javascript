@@ -160,5 +160,10 @@ function updateTimer() {
 }
 
 
+// page navigation
+
+window.onbeforeunload = function(userNav) {
+  userNav.returnValue = "Are you sure you want to leave?";
+};
 
 })

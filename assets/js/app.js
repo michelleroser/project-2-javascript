@@ -68,7 +68,7 @@ function createBoard()
     {
   for (let i = 0; i < cardArray.length; i++) {
     var card = document.createElement('img')
-    card.setAttribute('src', 'assets/images/tile.png')
+    card.setAttribute('src', 'assets/images/hex.png')
     card.setAttribute('data-id', i)
     card.addEventListener('click', flipcard)
     grid.appendChild(card)
@@ -89,8 +89,8 @@ function checkForMatch() {
     cardsWon.push(cardsChosen)
   }
   else {
-    cards[optionOneId].setAttribute('src', 'assets/images/tile.png')
-    cards[optionTwoId].setAttribute('src', 'assets/images/tile.png')
+    cards[optionOneId].setAttribute('src', 'assets/images/hex.png')
+    cards[optionTwoId].setAttribute('src', 'assets/images/hex.png')
     document.getElementById('failAudio').play()
     alert('Sorry, try again')
   }
@@ -163,7 +163,7 @@ function updateTimer() {
 // page navigation
 
 window.onbeforeunload = function(userNav) {
-  userNav.returnValue = "Are you sure you want to leave?";
+  user.returnValue = "Are you sure you want to leave?";
 };
 
 })

@@ -4,52 +4,52 @@ document.addEventListener('DOMContentLoaded',  () => {
 
 const cardArray = [
   {
-  name: 'camera',
-  img: 'assets/images/camera.png'
+  name: 'rose',
+  img: 'assets/images/rose.png'
   },
   {
-  name: 'camera',
-  img: 'assets/images/camera.png'
+  name: 'rose',
+  img: 'assets/images/rose.png'
   },
   {
-  name: 'photos',
-  img: 'assets/images/photos.png'
+  name: 'bunny',
+  img: 'assets/images/bunny.png'
   },
   {
-  name: 'photos',
-  img: 'assets/images/photos.png'
+  name: 'bunny',
+  img: 'assets/images/bunny.png'
   },
   {
-  name: 'test',
-  img: 'assets/images/test.png'
+  name: 'cake',
+  img: 'assets/images/cake.png'
   },
   {
-  name: 'test',
-  img: 'assets/images/test.png'
+  name: 'cake',
+  img: 'assets/images/cake.png'
   },
   {
-  name: 'dog',
-  img: 'assets/images/dog.jpg'
+  name: 'tophat',
+  img: 'assets/images/tophat.png'
   },
   {
-  name: 'dog',
-  img: 'assets/images/dog.jpg'
+  name: 'tophat',
+  img: 'assets/images/tophat.png'
   },
   {
-  name: 'cat',
-  img: 'assets/images/cat.jpg'
+  name: 'beach',
+  img: 'assets/images/beach.png'
   },
   {
-  name: 'cat',
-  img: 'assets/images/cat.jpg'
+  name: 'beach',
+  img: 'assets/images/beach.png'
   },
   {
-  name: 'bird',
-  img: 'assets/images/bird.jpg'
+  name: 'drum',
+  img: 'assets/images/drum.png'
   },
   {
-  name: 'bird',
-  img: 'assets/images/bird.jpg'
+  name: 'drum',
+  img: 'assets/images/drum.png'
   },
 ]
 
@@ -83,7 +83,15 @@ function checkForMatch() {
   const optionTwoId = cardsChosenId[1]
   if (cardsChosen[0] === cardsChosen[1]){
     document.getElementById('winAudio').play()
-    alert('You found a match')
+    Swal.fire({
+      title: 'You found a match!',
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
+    })
     cards[optionOneId].setAttribute('src', 'assets/images/blank.png')
     cards[optionTwoId].setAttribute('src', 'assets/images/blank.png')
     cardsWon.push(cardsChosen)
@@ -92,16 +100,36 @@ function checkForMatch() {
     cards[optionOneId].setAttribute('src', 'assets/images/hex.png')
     cards[optionTwoId].setAttribute('src', 'assets/images/hex.png')
     document.getElementById('failAudio').play()
-    alert('Sorry, try again')
+    Swal.fire({
+      title: 'Sorry, try again!',
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
+    })
   }
 
   cardsChosen = []
   cardsChosenId = []
+  var finalmessage = document.getElementById("result")
   resultDisplay.textContent = cardsWon.length
   if (cardsWon.length === cardArray.length/2) {
     document.getElementById('completeAudio').play()
     resultDisplay.textContent = 'Congratulations! You found them all!'
-    setTimeout("location.reload(true);", 6000);
+    document.getElementById("score").style.visibility="hidden";
+    document.getElementById("finalmessage").appendChild(finalmessage);
+    Swal.fire({
+      title: 'Lets play again!',
+      backdrop: `
+          rgba(255,192,203,0.4)
+          url("assets/images/final.gif")
+          center right
+          no-repeat
+        `,
+    })
+    setTimeout("location.reload(true);", 10000);
   }
 }
 
@@ -160,10 +188,12 @@ function updateTimer() {
 }
 
 
+
+
 // page navigation
 
 window.onbeforeunload = function(userNav) {
-  user.returnValue = "Are you sure you want to leave?";
+  userNav.returnValue = "Are you sure you want to leave?";
 };
 
 })

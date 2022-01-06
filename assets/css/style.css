@@ -1,7 +1,7 @@
 /*--------------------------------------------Logo & Navbar*/
 #logo {
   font-size: 45px;
-  color: #444444;
+  color: #000000;
   font-family: 'Baloo 2', sans-serif;
   text-transform: uppercase;
 }
@@ -15,21 +15,78 @@
 }
 
 #background {
-  background-color: #B2D3C2;
+  background-color: #cc8800;
+}
+/*--------------------------------------------Intro*/
+
+section {
+  position: relative;
 }
 
+
+section::before {
+  content: "";
+  background-image: url(../images/background-img.jpg);
+  background-color: lightgray;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 1000px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.4;
+}
+
+.heading {
+  text-align: center;
+  margin:auto;
+  padding-top:75px;
+  position: relative;
+}
+
+.intro {
+  text-align: center;
+  position: relative;
+  font-size: 20px;
+  padding-bottom:20px;
+  padding-top:10px;
+}
 
 /*--------------------------------------------Grid*/
 
-.grid {
-  display: flex;
-  flex-wrap: wrap;
-  height:300px;
-  width: 400px;
+
+h3, h2{
+  position: relative;
+  font-weight: bold;
+}
+
+#score {
+  text-align:right;
 }
 
 #result {
+  position: relative;
+  font-size: 25px;
+  font-weight: bold;
+  float:left;
+  text-align:center;
+}
 
+#finalmessage {
+  font-size:50px;
+  font-weight:bolder;
+  color: black;
+}
+
+.grid {
+  padding-top: 20px;
+  height: 300px;
+  width: 400px;
+  margin: auto;
+  position: relative;
 }
 
 
@@ -37,21 +94,28 @@
 
 
 #timer {
-  background-color: #fff;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  font-weight: bold;
   font-size: 50px;
   margin:0;
   height: 70px;
   width: 200px;
+  position: relative;
+  padding-top:75px;
+}
+
+.tpos {
+  position: relative;
+  padding-top: 30px;
 }
 
 /*--------------------------------------------Footer*/
 .footer-basic {
   padding: 40px 0;
-  background-color: #B2D3C2;
-  color: #4b4c4d;
+  background-color: #cc8800;
+  color: #000000;
 }
 
 .footer-basic ul {
@@ -106,4 +170,16 @@
   font-size: 13px;
   color: black;
   margin-bottom: 0;
+}
+
+/*--------------------------------------------Media Queries*/
+
+@media (max-width:480px) {
+  #logo {
+    font-size: 20px;
+  }
+
+  #result {
+    font-size:20px;
+  }
 }
